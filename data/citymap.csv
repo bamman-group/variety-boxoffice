@@ -1,5 +1,6 @@
-original,city,lat,lon,state,country
-Buenos Aires,Buenos Aires,-34.6037,-58.3816,AR,AR
+original,normalized,lat,lon,state,country
+Buenos Aires,Buenos Aires,-34.6037,-58.3816,,Argentina
+Belgium,Belgium,50.8503,4.3517,,Belgium
 Vancouver,Vancouver,49.2827,-123.1207,BC,Canada
 Toronto,Toronto,43.6532,-79.3832,ON,Canada
 Ottawa,Ottawa,45.4215,-75.6972,ON,Canada
@@ -8,12 +9,18 @@ St. John,St. John NB,45.2733,-66.0633,NB,Canada
 "St. John, N. B.",St. John NB,45.2733,-66.0633,NB,Canada
 "St. John, N.B.",St. John NB,45.2733,-66.0633,NB,Canada
 St. Johns,St. John NB,45.2733,-66.0633,NB,Canada
-Havana,Havana,23.1136,-82.3666,CU,CU
-Copenhagen,Copenhagen,55.6761,12.5683,DK,DK
-Paris,Paris,48.8566,2.3522,FR,FR
-Tokyo,,0,0,,Japan
-San Juan,San Juan,18.4655,-66.1057,PR,PR
-London,London,51.5074,-0.1278,UK,UK
+Havana,Havana,23.1136,-82.3666,,Cuba
+Copenhagen,Copenhagen,55.6761,12.5683,,Denmark
+Paris,Paris,48.8566,2.3522,,France
+Germany,Germany,52.52,13.405,,Germany
+Bologna,Bologna,44.4949,11.3426,,Italy
+Tokyo,Tokyo,35.6762,139.6503,,Japan
+Nationwide,Nationwide,39.8283,-98.5795,,NA
+Holland,Holland,52.3676,4.9041,,Netherlands
+Sydney,Sydney,-33.8688,151.2093,NSW,Australia
+Manila,Manila,14.5995,120.9842,,Philippines
+London,London,51.5074,-0.1278,,UK
+San Juan,San Juan,18.4655,-66.1057,PR,USA
 Portland,Portland,45.5152,-122.6784,OR,USA
 Portland (Ore.),Portland,45.5152,-122.6784,OR,USA
 "Portland, Ore",Portland,45.5152,-122.6784,OR,USA
@@ -97,8 +104,6 @@ Columbus O.,Columbus,39.9625,-83.0032,OH,USA
 Phoenix,Phoenix,33.4483,-112.0725,AZ,USA
 Agana,Agana,13.4709,144.7513,GU,USA
 Bakersfield,Bakersfield,35.3733,-119.0187,CA,USA
-Belgium,Belgium,50.8503,4.3517,,Belgium
-Bologna,Bologna,44.4949,11.3426,,Italy
 Cambridge,Cambridge,42.3736,-71.1097,MA,USA
 Chattanooga,Chattanooga,35.0456,-85.3097,TN,USA
 Coral Gables,Coral Gables,25.7215,-80.2684,FL,USA
@@ -106,21 +111,16 @@ Coral Gables,Coral Gables,25.7215,-80.2684,FL,USA
 Flint,Flint,43.0125,-83.6875,MI,USA
 Fort Lauderdale,Fort Lauderdale,26.1224,-80.1373,FL,USA
 Fresno,Fresno,36.7378,-119.7871,CA,USA
-Germany,Germany,52.52,13.405,,Germany
-Holland,Holland,52.3676,4.9041,,Netherlands
 Jacksonville,Jacksonville,30.3322,-81.6557,FL,USA
 Knoxville,Knoxville,35.9606,-83.9207,TN,USA
 L.A.,Los Angeles,34.0522,-118.2437,CA,USA
-Manila,Manila,14.5995,120.9842,,Philippines
 Miami,Miami,25.7617,-80.1918,FL,USA
-Nationwide,Nationwide,39.8283,-98.5795,,NA
 N.Y.,New York,40.7128,-74.006,NY,USA
 Paramus,Paramus,40.9445,-74.0754,NJ,USA
 Peoria,Peoria,40.6936,-89.589,IL,USA
 "Portland, OR",Portland,45.5152,-122.6784,OR,USA
 San Diego,San Diego,32.7157,-117.1611,CA,USA
 Southern California,Southern California,34.0522,-118.2437,CA,USA
-Sydney,Sydney,-33.8688,151.2093,,"NSW, Australia"
 Syosset,Syosset,40.8262,-73.5021,NY,USA
 Valley Stream,Valley Stream,40.6643,-73.7085,NY,USA
 Watchung,Watchung,40.6379,-74.4504,NJ,USA
