@@ -1,0 +1,126 @@
+original,city,lat,lon,state,country
+Buenos Aires,Buenos Aires,-34.6037,-58.3816,AR,AR
+Vancouver,Vancouver,49.2827,-123.1207,BC,Canada
+Toronto,Toronto,43.6532,-79.3832,ON,Canada
+Ottawa,Ottawa,45.4215,-75.6972,ON,Canada
+Montreal,Montreal,45.5017,-73.5673,QC,Canada
+St. John,St. John NB,45.2733,-66.0633,NB,Canada
+"St. John, N. B.",St. John NB,45.2733,-66.0633,NB,Canada
+"St. John, N.B.",St. John NB,45.2733,-66.0633,NB,Canada
+St. Johns,St. John NB,45.2733,-66.0633,NB,Canada
+Havana,Havana,23.1136,-82.3666,CU,CU
+Copenhagen,Copenhagen,55.6761,12.5683,DK,DK
+Paris,Paris,48.8566,2.3522,FR,FR
+Tokyo,,0,0,,Japan
+San Juan,San Juan,18.4655,-66.1057,PR,PR
+London,London,51.5074,-0.1278,UK,UK
+Portland,Portland,45.5152,-122.6784,OR,USA
+Portland (Ore.),Portland,45.5152,-122.6784,OR,USA
+"Portland, Ore",Portland,45.5152,-122.6784,OR,USA
+"Portland, Ore.",Portland,45.5152,-122.6784,OR,USA
+Tacoma,Tacoma,47.2529,-122.4443,WA,USA
+San Francisco,San Francisco,37.7749,-122.4194,CA,USA
+Seattle,Seattle,47.6062,-122.3321,WA,USA
+Hollywood,Los Angeles,34.0522,-118.2437,CA,USA
+Los Angeles,Los Angeles,34.0522,-118.2437,CA,USA
+Denver,Denver,39.7392,-104.9903,CO,USA
+San Antonio,San Antonio,29.4241,-98.4936,TX,USA
+Oklahoma City,Oklahoma City,35.4676,-97.5164,OK,USA
+Dallas,Dallas,32.7767,-96.797,TX,USA
+Lincoln,Lincoln,40.8136,-96.7026,NE,USA
+"Lincoln, Neb.",Lincoln,40.8136,-96.7026,NE,USA
+Omaha,Omaha,41.2565,-95.9345,NE,USA
+Council Bluffs,"Council Bluffs, IA",41.2619,-95.8608,IA,USA
+Topeka,Topeka,39.0483,-95.678,KS,USA
+Houston,Houston,29.7604,-95.3698,TX,USA
+Kansas City,Kansas City,39.0997,-94.5786,MO,USA
+Des Moines,Des Moines,41.5868,-93.625,IA,USA
+Minneapolis,Minneapolis,44.9778,-93.265,MN,USA
+St. Paul,St. Paul,44.9537,-93.09,MN,USA
+"La Crosse, Wisc.",La Crosse WI,43.8014,-91.2396,WI,USA
+St. Louis,St. Louis,38.627,-90.1994,MO,USA
+Jackson,Jackson,32.2988,-90.1848,MS,USA
+New Orleans,New Orleans,29.9511,-90.0715,LA,USA
+Memphis,Memphis,35.1495,-90.049,TN,USA
+Milwaukee,Milwaukee,43.0389,-87.9065,WI,USA
+Chicago,Chicago,41.8781,-87.6298,IL,USA
+Birmingham,Birmingham,33.5186,-86.8104,AL,USA
+Indianapolis,Indianapolis,39.7684,-86.1581,IN,USA
+Louisville,Louisville,38.2527,-85.7585,KY,USA
+Cincinnati,Cincinnati,39.1031,-84.512,OH,USA
+Atlanta,Atlanta,33.749,-84.388,GA,USA
+Dayton,Dayton,39.7589,-84.1916,OH,USA
+Toledo,Toledo,41.6528,-83.5379,OH,USA
+Detroit,Detroit,42.3314,-83.0458,MI,USA
+Columbus,Columbus,39.9612,-82.9988,OH,USA
+"Columbus, O.",Columbus OH,39.9612,-82.9988,OH,USA
+Cleveland,Cleveland,41.4993,-81.6944,OH,USA
+"Charleston, W. Va.","Charleston, WV",38.3498,-81.6326,WV,USA
+Canton,Canton,40.7989,-81.3784,OH,USA
+Charlotte,Charlotte,35.2271,-80.8431,NC,USA
+Youngstown,Youngstown,41.0998,-80.6495,OH,USA
+Miami Beach,Miami Beach,25.7907,-80.13,FL,USA
+Palm Beach,Palm Beach,26.7056,-80.0364,FL,USA
+Pittsburg,Pittsburgh,40.4406,-79.9959,PA,USA
+Pittsburgh,Pittsburgh,40.4406,-79.9959,PA,USA
+Buffalo,Buffalo,42.8864,-78.8784,NY,USA
+Rochester,Rochester,43.1566,-77.6088,NY,USA
+Washington,Washington DC,38.9072,-77.0369,DC,USA
+Washington D.C.,Washington DC,38.9072,-77.0369,DC,USA
+"Washington, D. C.",Washington DC,38.9072,-77.0369,DC,USA
+"Washington, D.C.",Washington DC,38.9072,-77.0369,DC,USA
+"Washington, DC",Washington DC,38.9072,-77.0369,DC,USA
+"Washington, Dec. 30",Washington DC,38.9072,-77.0369,DC,USA
+Baltimore,Baltimore,39.2904,-76.6122,MD,USA
+Lancaster,Lancaster,40.0379,-76.3055,PA,USA
+Norfolk,Norfolk,36.8508,-76.2859,VA,USA
+Syracuse,Syracuse,43.0481,-76.1474,NY,USA
+"Wilkes-Barre, Pa.",Wilkes-Barre PA,41.2459,-75.8813,PA,USA
+Wilmington,Wilmington,39.7391,-75.5398,DE,USA
+Philadelphia,Philadelphia,39.9526,-75.1652,PA,USA
+Atlantic City,Atlantic City,39.3643,-74.4229,NJ,USA
+Newark,Newark,40.7357,-74.1724,NJ,USA
+"Newark, N. J.",Newark,40.7357,-74.1724,NJ,USA
+Jersey City,Jersey City,40.7178,-74.0431,NJ,USA
+New Jersey,New Jersey,40.7178,-74.0431,NJ,USA
+Broadway,New York,40.7128,-74.006,NY,USA
+Brooklyn,New York,40.7128,-74.006,NY,USA
+New York,New York,40.7128,-74.006,NY,USA
+N.Y.-N.J.,New York,40.7128,-74.006,NY,USA
+Waterbury,Waterbury CT,41.5582,-73.0515,CT,USA
+New Haven,New Haven,41.3083,-72.9279,CT,USA
+Hartford,Hartford,41.7658,-72.6734,CT,USA
+Providence,Providence,41.824,-71.4128,RI,USA
+Roxbury,Roxbury,42.3152,-71.0914,MA,USA
+Boston,Boston,42.3601,-71.0589,MA,USA
+Columbus O.,Columbus,39.9625,-83.0032,OH,USA
+Phoenix,Phoenix,33.4483,-112.0725,AZ,USA
+Agana,Agana,13.4709,144.7513,GU,USA
+Bakersfield,Bakersfield,35.3733,-119.0187,CA,USA
+Belgium,Belgium,50.8503,4.3517,,Belgium
+Bologna,Bologna,44.4949,11.3426,,Italy
+Cambridge,Cambridge,42.3736,-71.1097,MA,USA
+Chattanooga,Chattanooga,35.0456,-85.3097,TN,USA
+Coral Gables,Coral Gables,25.7215,-80.2684,FL,USA
+"Dayton, O.",Dayton,39.7589,-84.1916,OH,USA
+Flint,Flint,43.0125,-83.6875,MI,USA
+Fort Lauderdale,Fort Lauderdale,26.1224,-80.1373,FL,USA
+Fresno,Fresno,36.7378,-119.7871,CA,USA
+Germany,Germany,52.52,13.405,,Germany
+Holland,Holland,52.3676,4.9041,,Netherlands
+Jacksonville,Jacksonville,30.3322,-81.6557,FL,USA
+Knoxville,Knoxville,35.9606,-83.9207,TN,USA
+L.A.,Los Angeles,34.0522,-118.2437,CA,USA
+Manila,Manila,14.5995,120.9842,,Philippines
+Miami,Miami,25.7617,-80.1918,FL,USA
+Nationwide,Nationwide,39.8283,-98.5795,,NA
+N.Y.,New York,40.7128,-74.006,NY,USA
+Paramus,Paramus,40.9445,-74.0754,NJ,USA
+Peoria,Peoria,40.6936,-89.589,IL,USA
+"Portland, OR",Portland,45.5152,-122.6784,OR,USA
+San Diego,San Diego,32.7157,-117.1611,CA,USA
+Southern California,Southern California,34.0522,-118.2437,CA,USA
+Sydney,Sydney,-33.8688,151.2093,,"NSW, Australia"
+Syosset,Syosset,40.8262,-73.5021,NY,USA
+Valley Stream,Valley Stream,40.6643,-73.7085,NY,USA
+Watchung,Watchung,40.6379,-74.4504,NJ,USA

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Box Office Champions 1922–1979</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="data.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #0f1117;
+    color: #e8e8f0;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 24px 32px 16px;
+    border-bottom: 1px solid #2a2a3a;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  header p {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    height: calc(100vh - 80px);
+  }
+
+  .panel {
+    padding: 20px 28px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .panel + .panel {
+    border-left: 1px solid #2a2a3a;
+  }
+
+  .panel-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 14px;
+  }
+
+  /* Year panel controls */
+  .year-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .year-display {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #fff;
+    min-width: 80px;
+    line-height: 1;
+  }
+
+  input[type="range"] {
+    flex: 1;
+    min-width: 120px;
+    accent-color: #6c8ebf;
+    cursor: pointer;
+  }
+
+  .top-n-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  .top-n-control select {
+    background: #1e1e2e;
+    color: #e8e8f0;
+    border: 1px solid #3a3a4a;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  /* Chart containers */
+  .chart-area {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Bar chart styles */
+  .bar rect {
+    cursor: pointer;
+    transition: filter 0.15s;
+  }
+
+  .bar rect:hover, .bar.selected rect {
+    filter: brightness(1.35);
+  }
+
+  .bar.selected rect {
+    stroke: #fff;
+    stroke-width: 1.5px;
+  }
+
+  .bar text {
+    pointer-events: none;
+    font-size: 11px;
+    fill: #ddd;
+  }
+
+  .bar.selected text {
+    fill: #fff;
+    font-weight: 600;
+  }
+
+  .axis text {
+    fill: #666;
+    font-size: 10px;
+  }
+
+  .axis line, .axis path {
+    stroke: #333;
+  }
+
+  .gridline {
+    stroke: #222;
+    stroke-dasharray: 2,3;
+  }
+
+  /* Timeline panel */
+  .search-area {
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .search-area input {
+    width: 100%;
+    padding: 9px 14px;
+    background: #1e1e2e;
+    border: 1px solid #3a3a4a;
+    border-radius: 6px;
+    color: #e8e8f0;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .search-area input:focus {
+    border-color: #6c8ebf;
+  }
+
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1e1e2e;
+    border: 1px solid #3a3a4a;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+  }
+
+  .suggestions.visible { display: block; }
+
+  .suggestion-item {
+    padding: 8px 14px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #2a2a3a;
+  }
+
+  .suggestion-item:last-child { border-bottom: none; }
+
+  .suggestion-item:hover, .suggestion-item.active {
+    background: #2a2a3a;
+    color: #fff;
+  }
+
+  .suggestion-item .genre {
+    font-size: 0.72rem;
+    color: #666;
+    margin-left: 6px;
+  }
+
+  /* Movie title display */
+  .selected-movie {
+    margin-bottom: 12px;
+    min-height: 48px;
+  }
+
+  .selected-movie h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .selected-movie .meta {
+    font-size: 0.78rem;
+    color: #888;
+    margin-top: 3px;
+  }
+
+  /* Line chart */
+  .line-path {
+    fill: none;
+    stroke: #6c8ebf;
+    stroke-width: 2.5px;
+  }
+
+  .dot {
+    fill: #6c8ebf;
+    stroke: #0f1117;
+    stroke-width: 2px;
+    cursor: pointer;
+    transition: r 0.1s;
+  }
+
+  .dot:hover { r: 6; }
+
+  .dot.year-highlight {
+    fill: #f0a050;
+    stroke: #fff;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    position: fixed;
+    background: #1e1e2e;
+    border: 1px solid #3a3a4a;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.1s;
+    max-width: 220px;
+    line-height: 1.5;
+  }
+
+  .tooltip.visible { opacity: 1; }
+  .tooltip strong { color: #fff; display: block; }
+  .tooltip .tip-val { color: #aac4e8; font-size: 0.9rem; }
+
+  /* Empty states */
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #444;
+    text-align: center;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .empty-state .icon { font-size: 2rem; }
+
+  /* Legend / hint */
+  .hint {
+    font-size: 0.73rem;
+    color: #555;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #3a3a4a; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>US box office, 1922-1979</h1>
+  <p>Estimated from weekly reports in <em>Variety</em> magazine &nbsp;·&nbsp; Click a bar or search to see weekly box office earnings</p>
+</header>
+
+<div class="layout">
+
+  <!-- LEFT PANEL: Top movies by year -->
+  <div class="panel" id="year-panel">
+    <div class="panel-title">Top Movies by Year</div>
+
+    <div class="year-controls">
+      <div class="year-display" id="year-label">1922</div>
+      <input type="range" id="year-slider" min="0" step="1">
+      <div class="top-n-control">
+        Show top
+        <select id="top-n-select">
+          <option value="10">10</option>
+          <option value="20" selected>20</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="chart-area" id="bar-chart-area">
+      <svg id="bar-svg"></svg>
+    </div>
+    <div class="hint">Click any bar to show that film's earnings history →</div>
+  </div>
+
+  <!-- RIGHT PANEL: Movie timeline -->
+  <div class="panel" id="timeline-panel">
+    <div class="panel-title">Box Office Over Time</div>
+
+    <div class="search-area">
+      <input type="text" id="search-input" placeholder="Search for a film…" autocomplete="off">
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+
+    <div class="selected-movie" id="movie-info">
+      <div class="empty-state" style="height:auto;padding:0;margin-bottom:8px;">
+        <span style="color:#555;font-size:0.85rem;">Select a film to view its earnings history</span>
+      </div>
+    </div>
+
+    <div class="chart-area" id="line-chart-area">
+      <svg id="line-svg"></svg>
+    </div>
+  </div>
+
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+(() => {
+  const { byYear, byMovie, weekly, movieList, years } = window.movieData;
+
+  // Parse compact YYYYMMDD integer to JS Date
+  function parseDate(d) {
+    const s = String(d);
+    return new Date(+s.slice(0,4), +s.slice(4,6)-1, +s.slice(6,8));
+  }
+
+  // ─── State ───────────────────────────────────────────────
+  let currentYear = years[0];
+  let selectedImdb = null;
+  let topN = 20;
+
+  // ─── Year slider ─────────────────────────────────────────
+  const slider = document.getElementById("year-slider");
+  slider.max = years.length - 1;
+  slider.value = 0;
+
+  const yearLabel = document.getElementById("year-label");
+
+  slider.addEventListener("input", () => {
+    currentYear = years[+slider.value];
+    yearLabel.textContent = currentYear;
+    drawBarChart();
+  });
+
+  document.getElementById("top-n-select").addEventListener("change", e => {
+    topN = +e.target.value;
+    drawBarChart();
+  });
+
+  // ─── Tooltip ─────────────────────────────────────────────
+  const tooltip = document.getElementById("tooltip");
+
+  function showTooltip(html, event) {
+    tooltip.innerHTML = html;
+    tooltip.classList.add("visible");
+    moveTooltip(event);
+  }
+
+  function moveTooltip(event) {
+    const x = event.clientX + 14;
+    const y = event.clientY - 10;
+    tooltip.style.left = Math.min(x, window.innerWidth - 240) + "px";
+    tooltip.style.top = y + "px";
+  }
+
+  function hideTooltip() {
+    tooltip.classList.remove("visible");
+  }
+
+  // ─── Bar Chart ────────────────────────────────────────────
+  const barSvg = d3.select("#bar-svg");
+  const barArea = document.getElementById("bar-chart-area");
+
+  function drawBarChart() {
+    const movies = (byYear[currentYear] || []).slice(0, topN);
+    const W = barArea.clientWidth;
+    const H = barArea.clientHeight;
+    const margin = { top: 6, right: 12, bottom: 32, left: 200 };
+    const w = W - margin.left - margin.right;
+    const h = H - margin.top - margin.bottom;
+
+    barSvg.selectAll("*").remove();
+
+    if (!movies.length) return;
+
+    const g = barSvg.append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleLinear()
+      .domain([0, d3.max(movies, d => d.box_office)])
+      .range([0, w])
+      .nice();
+
+    const y = d3.scaleBand()
+      .domain(movies.map(d => d.imdb))
+      .range([0, h])
+      .padding(0.18);
+
+    // Gridlines
+    g.append("g").attr("class", "gridlines")
+      .selectAll("line")
+      .data(x.ticks(5))
+      .join("line")
+      .attr("class", "gridline")
+      .attr("x1", d => x(d)).attr("x2", d => x(d))
+      .attr("y1", 0).attr("y2", h);
+
+    // X axis
+    g.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(0,${h})`)
+      .call(d3.axisBottom(x).ticks(5).tickFormat(d => d >= 1e6 ? `$${(d/1e6).toFixed(1)}M` : `$${(d/1e3).toFixed(0)}K`));
+
+    // Bars
+    const bars = g.selectAll(".bar")
+      .data(movies, d => d.imdb)
+      .join("g")
+      .attr("class", d => `bar${d.imdb === selectedImdb ? " selected" : ""}`)
+      .attr("transform", d => `translate(0,${y(d.imdb)})`);
+
+    bars.append("rect")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", d => x(d.box_office))
+      .attr("height", y.bandwidth())
+      .attr("rx", 3)
+      .attr("fill", "#ff7700")
+      .attr("fill-opacity", d => d.imdb === selectedImdb ? 0.85 : 0.6)
+      .on("click", (event, d) => {
+        selectMovie(d.imdb);
+        event.stopPropagation();
+      })
+      .on("mouseover", (event, d) => {
+        showTooltip(
+          `<strong>${d.title}</strong>
+           <span class="tip-val">$${d.box_office.toLocaleString()}</span>
+           <span style="color:#888;font-size:0.75rem">Rank #${d.rank}</span>`,
+          event
+        );
+      })
+      .on("mousemove", moveTooltip)
+      .on("mouseout", hideTooltip);
+
+    // Labels (title)
+    bars.append("text")
+      .attr("x", -8)
+      .attr("y", y.bandwidth() / 2)
+      .attr("dy", "0.35em")
+      .attr("text-anchor", "end")
+      .text(d => {
+        const maxChars = Math.floor(margin.left / 7.5);
+        return d.title.length > maxChars ? d.title.slice(0, maxChars - 1) + "…" : d.title;
+      })
+      .style("font-size", `${Math.max(9, Math.min(12, y.bandwidth() * 0.7))}px`)
+      .style("fill", d => d.imdb === selectedImdb ? "#fff" : "#ccc");
+  }
+
+  // ─── Movie Selection ───────────────────────────────────────
+  function selectMovie(imdb) {
+    selectedImdb = imdb;
+    drawBarChart();
+    drawLineChart(imdb);
+    // Update search box
+    if (byMovie[imdb]) {
+      document.getElementById("search-input").value = byMovie[imdb].title;
+    }
+    closeSuggestions();
+  }
+
+  // ─── Line Chart (weekly data) ─────────────────────────────
+  const lineSvg = d3.select("#line-svg");
+  const lineArea = document.getElementById("line-chart-area");
+  const movieInfo = document.getElementById("movie-info");
+
+  function drawLineChart(imdb) {
+    const movie = byMovie[imdb];
+    const weeklyData = (weekly[imdb] || []).map(([d, g]) => ({ date: parseDate(d), gross: g }));
+
+    lineSvg.selectAll("*").remove();
+
+    if (!movie) return;
+
+    // Update info block
+    const totalGross = d3.sum(weeklyData, d => d.gross);
+    const peak = weeklyData.length ? weeklyData.reduce((a, b) => a.gross > b.gross ? a : b) : null;
+
+    movieInfo.innerHTML = `
+      <h2><a href="https://www.imdb.com/title/${imdb}/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid #555;">${movie.title}</a></h2>
+      <div class="meta">
+        ${weeklyData.length ? `${weeklyData.length} weeks tracked` : ""}
+        ${peak ? `&nbsp;·&nbsp; Peak week: $${peak.gross.toLocaleString()} (${peak.date.toLocaleDateString("en-US",{month:"short",year:"numeric"})})` : ""}
+      </div>
+    `;
+
+    if (!weeklyData.length) {
+      lineSvg.append("text")
+        .attr("x", "50%").attr("y", "50%")
+        .attr("text-anchor", "middle").attr("fill", "#444").attr("font-size", "13px")
+        .text("No weekly data available for this film");
+      return;
+    }
+
+    const W = lineArea.clientWidth;
+    const H = lineArea.clientHeight;
+    const margin = { top: 16, right: 24, bottom: 40, left: 80 };
+    const w = W - margin.left - margin.right;
+    const h = H - margin.top - margin.bottom;
+
+    const g = lineSvg.append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleTime()
+      .domain(d3.extent(weeklyData, d => d.date))
+      .range([0, w]);
+
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(weeklyData, d => d.gross)])
+      .range([h, 0])
+      .nice();
+
+    // Gridlines
+    g.append("g").selectAll("line")
+      .data(y.ticks(5))
+      .join("line")
+      .attr("class", "gridline")
+      .attr("x1", 0).attr("x2", w)
+      .attr("y1", d => y(d)).attr("y2", d => y(d));
+
+    // Axes
+    g.append("g")
+      .attr("class", "axis")
+      .attr("transform", `translate(0,${h})`)
+      .call(d3.axisBottom(x).ticks(6).tickFormat(d3.timeFormat("%b %Y")));
+
+    g.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y).ticks(5)
+        .tickFormat(d => d >= 1e6 ? `$${(d/1e6).toFixed(1)}M` : `$${(d/1e3).toFixed(0)}K`));
+
+    // Points
+    g.selectAll(".dot")
+      .data(weeklyData)
+      .join("circle")
+      .attr("class", "dot")
+      .attr("cx", d => x(d.date))
+      .attr("cy", d => y(d.gross))
+      .attr("r", 3.5)
+      .on("mouseover", (event, d) => {
+        showTooltip(
+          `<strong>${d.date.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})}</strong>
+           <span class="tip-val">$${d.gross.toLocaleString()}</span>`,
+          event
+        );
+      })
+      .on("mousemove", moveTooltip)
+      .on("mouseout", hideTooltip);
+  }
+
+  // ─── Search ───────────────────────────────────────────────
+  const searchInput = document.getElementById("search-input");
+  const suggestionsEl = document.getElementById("suggestions");
+  let activeIndex = -1;
+  let filteredMovies = [];
+
+  searchInput.addEventListener("input", () => {
+    const q = searchInput.value.trim().toLowerCase();
+    if (!q) { closeSuggestions(); return; }
+
+    filteredMovies = movieList
+      .filter(m => m.title.toLowerCase().includes(q))
+      .slice(0, 80);
+
+    renderSuggestions();
+  });
+
+  searchInput.addEventListener("keydown", e => {
+    if (!suggestionsEl.classList.contains("visible")) return;
+    if (e.key === "ArrowDown") {
+      activeIndex = Math.min(activeIndex + 1, filteredMovies.length - 1);
+      highlightSuggestion();
+      e.preventDefault();
+    } else if (e.key === "ArrowUp") {
+      activeIndex = Math.max(activeIndex - 1, -1);
+      highlightSuggestion();
+      e.preventDefault();
+    } else if (e.key === "Enter" && activeIndex >= 0) {
+      selectMovie(filteredMovies[activeIndex].imdb);
+      e.preventDefault();
+    } else if (e.key === "Escape") {
+      closeSuggestions();
+    }
+  });
+
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".search-area")) closeSuggestions();
+  });
+
+  function renderSuggestions() {
+    activeIndex = -1;
+    suggestionsEl.innerHTML = "";
+
+    if (!filteredMovies.length) { closeSuggestions(); return; }
+
+    filteredMovies.forEach((m, i) => {
+      const el = document.createElement("div");
+      el.className = "suggestion-item";
+      el.innerHTML = `${m.title}<span class="genre">${m.genre || ""}</span>`;
+      el.addEventListener("mousedown", () => selectMovie(m.imdb));
+      el.addEventListener("mouseover", () => { activeIndex = i; highlightSuggestion(); });
+      suggestionsEl.appendChild(el);
+    });
+
+    suggestionsEl.classList.add("visible");
+  }
+
+  function highlightSuggestion() {
+    suggestionsEl.querySelectorAll(".suggestion-item").forEach((el, i) => {
+      el.classList.toggle("active", i === activeIndex);
+    });
+  }
+
+  function closeSuggestions() {
+    suggestionsEl.classList.remove("visible");
+    activeIndex = -1;
+  }
+
+  // ─── Resize ───────────────────────────────────────────────
+  const debouncedResize = debounce(() => {
+    drawBarChart();
+    if (selectedImdb) drawLineChart(selectedImdb);
+  }, 120);
+
+  window.addEventListener("resize", debouncedResize);
+
+  function debounce(fn, ms) {
+    let timer;
+    return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
+  }
+
+  // ─── Init ─────────────────────────────────────────────────
+  drawBarChart();
+
+})();
+</script>
+</body>
+</html>
