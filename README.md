@@ -7,6 +7,7 @@ This repository provides data extracted from Variety magazine, capturing weekly 
 
 David Bamman, Kent Chang, Allison Cooper, Juishan Hsu, Reina Kushihashi, Madison Mar, Arnav Podichetty, Rachael Samberg, Ipek Sancak and Yuhan Shao (2026), TITLE, ArXiV.
 
+To see a browable list of all movies ranked by their box office each year over this entire period of time, see [this Google sheet](https://docs.google.com/spreadsheets/d/1e8o6CixwbGSCr1oEMIerkNRAvt2m91m4OaPDKL1Qcfc/edit?usp=sharing).
 
 
 ## Data
