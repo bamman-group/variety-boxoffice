@@ -11,7 +11,7 @@ David Bamman, Kent Chang, Allison Cooper, Juishan Hsu, Reina Kushihashi, Madison
 
 ## Data
 
-`data/all_data.json`: All data extracted from Variety, organized by issue (in format: Year-Month-Date-PageNumber). Each issue contains a list of extractions, where each extraction contains the following information:
+`data/all_data.json.gz`: All data extracted from Variety, organized by issue (in format: Year-Month-Date-PageNumber). Each issue contains a list of extractions, where each extraction contains the following information:
 
 * Theater name
 * City
@@ -41,7 +41,7 @@ python get_weekly.py > ../data/variety_boxoffice_weekly.tsv
 
 ## Visualization
 
-`viz` contains HTML/js code to visualize the top 50 movies per year, including the distribution of their weekly earnings over time. (See, for instance, the cycle of re-releases for movies like <em>Gone with the Wind</em> and <em>Snow White</em>.)
+This repo contains [an interactive visualization](https://bamman-group.github.io/variety-boxoffice/viz/) of the top 50 movies per year, including the distribution of their weekly earnings over time. (See, for instance, the cycle of re-releases for movies like <em>Gone with the Wind</em> and <em>Snow White</em>.).  The `viz` folder contains the source of the visualization.
 
 
 
