@@ -41,7 +41,7 @@ python get_weekly.py > ../data/variety_boxoffice_weekly.tsv
 
 ## Visualization
 
-This repo contains [an interactive visualization](https://bamman-group.github.io/variety-boxoffice/viz/) of the top 50 movies per year, including the distribution of their weekly earnings over time. (See, for instance, the cycle of re-releases for movies like <em>Gone with the Wind</em> and <em>Snow White</em>.).  The `viz` folder contains the source of the visualization.
+This repo contains [an interactive visualization](https://bamman-group.github.io/variety-boxoffice/) of the top 50 movies per year, including the distribution of their weekly earnings over time. (See, for instance, the cycle of re-releases for movies like <em>Gone with the Wind</em> and <em>Snow White</em>.).  The `viz` folder contains the source of the visualization.
 
 
 
