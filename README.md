@@ -5,7 +5,7 @@ Weekly box office earnings extracted from Variety magazine, 1922-1979
 
 This repository provides data extracted from Variety magazine, capturing weekly box office earnings within the US over the period 1922-1979. This research is decribed in the following article:
 
-David Bamman, Kent Chang, Allison Cooper, Juishan Hsu, Reina Kushihashi, Madison Mar, Arnav Podichetty, Rachael Samberg, Ipek Sancak and Yuhan Shao (2026), TITLE, ArXiV.
+David Bamman, Kent Chang, Allison Cooper, Juishan Hsu, Reina Kushihashi, Madison Mar, Arnav Podichetty, Rachael Samberg, Ipek Sancak and Yuhan Shao (2026), "Evaluating Multimodal Narrative Understanding of Popular Hollywood Films", ArXiV (forthcoming).
 
 To see a browable list of all movies ranked by their box office each year over this entire period of time, see [this Google sheet](https://docs.google.com/spreadsheets/d/1e8o6CixwbGSCr1oEMIerkNRAvt2m91m4OaPDKL1Qcfc/edit?usp=sharing).  This repo also contains [an interactive visualization](https://bamman-group.github.io/variety-boxoffice/) of the top 50 movies per year, including the distribution of their weekly earnings over time. (See, for instance, the cycle of re-releases for movies like <em>Gone with the Wind</em> and <em>Snow White</em>.)  
 
