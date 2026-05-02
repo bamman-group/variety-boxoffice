@@ -29,6 +29,11 @@ To see a browable list of all movies ranked by their box office each year over t
 `data/variety_boxoffice_yearly.tsv`: Yearly box office totals per (IMDB) movie (created by `scripts/get_yearly.py`)
 
 
+## Scripts
+
+`scripts/gemini_extract.py` includes the full prompt for using Gemini 3 to extract information from Variety pages (given access to page images).
+
+
 ## Generate weekly and yearly ranks
 ```
 gunzip data/all_data.json.gz
