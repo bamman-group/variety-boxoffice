@@ -1,0 +1,518 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "@id": "https://github.com/bamman-group/variety-boxoffice",
+  "name": "Variety Box Office Data 1922–1979",
+  "description": "Weekly box office earnings extracted from Variety magazine (1922–1979). This dataset contains approximately 1.4 million weekly box office records for over 24,000 movies, representing the first large-scale, openly available dataset of historical US box office information for feature films. Extractions were performed using Gemini 3 Pro with ultrahigh image resolution and high-level reasoning. The data captures city, theater, movie title, and weekly gross earnings, and is aggregated into weekly and yearly rankings linked to IMDB identifiers.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "citeAs": "David Bamman, Kent Chang, Allison Cooper, Juishan Hsu, Reina Kushihashi, Madison Mar, Arnav Podichetty, Rachael Samberg, Ipek Nil Sancak, and Yuhan Shao (2026). Evaluating Multimodal Narrative Understanding of Popular Hollywood Films. ArXiV (forthcoming).",
+  "url": "https://github.com/bamman-group/variety-boxoffice",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "version": "1.0",
+  "datePublished": "2026",
+  "inLanguage": "en",
+  "rai:dataCollection": "Data was collected by 1.) Using Gemini 3 Pro to extract <movie title, city, theater, gross> tuples from page images of Variety magazine; 2.) Manually creating yearly mappings between the movie titles reported in Variety and IMDB identifiers (e.g., 'Gone' in 1940 referring to 'Gone with the Wind' (IMDB id tt0031381), and aggregating those individual tuples into weekly and yearly total box office estimates.",
+  "rai:dataCollectionType": [
+    "Document analysis",
+    "Secondary Data Analysis"
+  ],
+  "rai:dataCollectionMissingData": "Data only includes movies reported in Variety magazine (1922-1979), which focuses on under 100 major metropolitan cities. The compiled data only uses data from cities within the United States, and not box office numbers reported from outside the US.",
+  "rai:dataCollectionRawData": "Scanned page images of Variety magazine from 1922–1979 licensed to UC Berkeley for educational and research purposes; not redistributed due to copyright restrictions.",
+  "rai:dataCollectionTimeframe": "Variety magazine (originally published between March 3, 1922 through December 26, 1979).",
+  "rai:dataAnnotationProtocol": "We create a gold-standard dataset to evaluate tuple extraction by manually labeling 4,072 tuples in 21 issues of Variety spanning the years 1922-1979.  We use 7 of these issues for development and hold out 12 issues for evaluation.  Annotations were created by visually inspecting each page image in an issue and manually creating tuples of the form <page, city, theater, movie name, reported gross",
+  "rai:dataAnnotationPlatform": "Google sheets was used for recording manual annotations",
+  "rai:annotationsPerItem": "Each tuple was extracted by one of two annotators (both co-authors)",
+  "rai:machineAnnotationTools": "We extract tuples from all page images using Gemini 3 Pro with ultrahigh image resolution and high thinking level.",
+  "rai:dataUseCases": "This dataset opens up new possibilities for research and visualization of historical box office behavior (including the economic history of the film industry), subject to limitations of reporting by Variety magazine. This dataset can be used to define selection criteria for movie collections where some proxy to 'popularity' is central",
+  "rai:dataBiases": "This datasets only reports box office numbers as reported through Variety magazine for US cities (fewer than 100 are reported over the period 1922-1979), and generally focus on major metropolitan areas.  Movie collections that are defined by economic proxies for popularity will underepresent works with limited commercial distribution; and a focus in the United States also leads to underrepresentation for non-English-language films.",
+  "rai:dataLimitations": "Individual <movie title, city, theater, gross> tuples are extracted using computational methods (Gemini 3 Pro), which have measurable error rates.  While we find that movie rankings derived from this process have very high correlation with rankings extracted from human labels (Spearman rho > 0.96), the accuracy of each tuple being exactly correct is lower (F1 = 0.82).",
+  "rai:dataSocialImpact": "By presenting the first systematic and open dataset of historical box office data, this dataset can help drive new research on the popularity of historical films (as measured through economic indicators).  By defining its boundaries based on popularity, it risks reinforcing commerically-defined canons at the expense of other selection criteria.",
+  "rai:personalSensitiveInformation": "No personal data about individuals is included; all data describes movies, theaters, and box office grosses.",
+  "rai:hasSyntheticData": false,
+  "prov:wasGeneratedBy": {
+    "@type": "prov:Activity",
+    "prov:label": "Variety box office dataset construction",
+    "description": "Construction of the Variety weekly and yearly top box office lists, including extracting individual <movie title, city, theater, gross> tuples from page images of Variety magazine, mapping names to IMDB identifiers each year and aggregating box office numbers per movie over all Variety issues.",
+    "prov:startedAtTime": {
+      "@value": "2025-11-01T00:00:00",
+      "@type": "sc:DateTime"
+    },
+    "prov:endedAtTime": {
+      "@value": "2026-03-01T00:00:00",
+      "@type": "sc:DateTime"
+    },
+    "prov:wasAssociatedWith": {
+      "@type": "prov:Agent",
+      "name": "David Bamman",
+      "email": "dbamman@berkeley.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of California, Berkeley"
+      }
+    }
+  },
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "David Bamman",
+      "email": "dbamman@berkeley.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of California, Berkeley"
+      }
+    }
+  ],
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "github-repository",
+      "name": "github-repository",
+      "description": "Dataset release on GitHub.",
+      "contentUrl": "https://github.com/bamman-group/variety-boxoffice",
+      "encodingFormat": "git+https",
+      "sha256": "main"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "all_data-file",
+      "name": "all_data.json.gz",
+      "description": "All raw extractions from Variety magazine issues, organized by year and issue/page number identifier (Year-Month-Day-PageNumber). Each issue page number maps to a list of box office records. Contains approximately 1.4 million records from 1922–1979.",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "contentUrl": "data/all_data.json.gz",
+      "encodingFormat": "application/gzip"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "citymap-file",
+      "name": "citymap.csv",
+      "description": "Mapping of all city names appearing in all_data.json to normalized names with geographic coordinates and country information.  Used to only report box office information for US cities (reporting outside the US is only sporadic in Variety).",
+      "contentUrl": "data/citymap.csv",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "title_map-file",
+      "name": "title_map.json",
+      "description": "Dictionary mapping movie name aliases (as they appear in Variety) and year to IMDB identifiers. Covers all aliases appearing at least 3 times in a year. Organized as a nested object: year -> {alias -> imdb_id}.",
+      "contentUrl": "data/title_map.json",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "application/json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "weekly-file",
+      "name": "variety_boxoffice_weekly.tsv",
+      "description": "Aggregated weekly box office totals per IMDB movie, produced by summing all gross values for the same movie across all theater-level records for a given week. Generated by scripts/get_weekly.py.",
+      "contentUrl": "data/variety_boxoffice_weekly.tsv",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "text/tab-separated-values"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "yearly-file",
+      "name": "variety_boxoffice_yearly.tsv",
+      "description": "Yearly box office totals and rankings per IMDB movie, with movie metadata (title, release year, runtime, genres) joined from IMDB. Generated by scripts/get_yearly.py.",
+      "contentUrl": "data/variety_boxoffice_yearly.tsv",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "text/tab-separated-values"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "all_data-records",
+      "name": "all_data",
+      "description": "Individual theater-level box office records extracted from Variety magazine. The underlying JSON is organized as a two-level nested object: the outer keys are 4-digit years (e.g. '1922'), the inner keys are issue-page identifiers in the format 'YYYY-MM-DD-PageNumber' (e.g. '1922-03-31-45'), and each inner value is a list of extraction records.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/year",
+          "name": "year",
+          "description": "4-digit year of the Variety issue from which the record was extracted (outer JSON key, e.g. '1922').",
+          "dataType": "sc:Integer"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/issuepage",
+          "name": "issuepage",
+          "description": "Issue-page identifier in the format 'YYYY-MM-DD-PageNumber' (inner JSON key, e.g. '1922-03-31-45'), where the date is the publication date and the number is the page number within that issue.",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/theater",
+          "name": "theater",
+          "description": "Name of the movie theater as reported in Variety.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "all_data-file"},
+            "extract": {
+              "jsonPath": "$.*.*[*].theater"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/city",
+          "name": "city",
+          "description": "City in which the theater is located, as reported in Variety. Join to citymap.csv on this field for geographic coordinates.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "all_data-file"},
+            "extract": {
+              "jsonPath": "$.*.*[*].city"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/movie",
+          "name": "movie",
+          "description": "Movie title as it appears in Variety (often abbreviated or variant spellings). Join to title_map.json (keyed by year, then alias) to resolve to an IMDB identifier.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "all_data-file"},
+            "extract": {
+              "jsonPath": "$.*.*[*].movie"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/week",
+          "name": "week",
+          "description": "Temporal framing of the reported gross, as printed in Variety. Choice between 'last week' and 'this week'. The extraction target is 'last week' gross.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "all_data-file"},
+            "extract": {
+              "jsonPath": "$.*.*[*].week"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "all_data/gross",
+          "name": "gross",
+          "description": "Reported box office gross in US dollars for the stated week at the theater.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "all_data-file"},
+            "extract": {
+              "jsonPath": "$.*.*[*].gross"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "citymap-records",
+      "name": "citymap",
+      "description": "Geographic metadata for all cities appearing in all_data (using for filtering to US cities), enabling spatial analysis of box office performance.",
+      "source": {
+        "fileObject": {"@id": "citymap-file"}
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "citymap/original",
+          "name": "original",
+          "description": "City name as it appears in Variety (matches all_data.city).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "citymap-file"},
+            "extract": {
+              "column": "original"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "citymap/normalized",
+          "name": "normalized",
+          "description": "Canonical normalized city name.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "citymap-file"},
+            "extract": {
+              "column": "normalized"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "citymap/lat",
+          "name": "lat",
+          "description": "Latitude of the city in decimal degrees.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {"@id": "citymap-file"},
+            "extract": {
+              "column": "lat"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "citymap/lon",
+          "name": "lon",
+          "description": "Longitude of the city in decimal degrees.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {"@id": "citymap-file"},
+            "extract": {
+              "column": "lon"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "citymap/state",
+          "name": "state",
+          "description": "US state abbreviation (if applicable).",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "citymap-file"},
+            "extract": {
+              "column": "state"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "citymap/country",
+          "name": "country",
+          "description": "Country name. Weekly and yearly rankings use US-only records.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "citymap-file"},
+            "extract": {
+              "column": "country"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "weekly-records",
+      "name": "variety_boxoffice_weekly",
+      "description": "Aggregated weekly US box office totals per IMDB movie across all US theaters reported in Variety for a given week. Produced by scripts/get_weekly.py from all_data.json.gz. Contains 249,722 rows.",
+      "source": {
+        "fileObject": {"@id": "weekly-file"}
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "weekly/imdb",
+          "name": "imdb",
+          "description": "IMDB title identifier (e.g. 'tt0013750'). Join to variety_boxoffice_yearly.tsv for title and genre metadata.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "weekly-file"},
+            "extract": {
+              "column": "imdb"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "weekly/date",
+          "name": "date",
+          "description": "Week date (YYYY-MM-DD format) corresponding to the Variety issue date from which the 'last week' grosses were extracted.",
+          "dataType": "sc:Date",
+          "source": {
+            "fileObject": {"@id": "weekly-file"},
+            "extract": {
+              "column": "date"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "weekly/box_office",
+          "name": "box_office",
+          "description": "Total weekly US box office gross in dollars, summed across all theaters reported for this movie in this week's Variety issue.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {"@id": "weekly-file"},
+            "extract": {
+              "column": "box_office"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "yearly-records",
+      "name": "variety_boxoffice_yearly",
+      "description": "Annual US box office totals and rankings per IMDB movie, with IMDB metadata. Produced by scripts/get_yearly.py from all_data.json.gz. Contains 40,025 rows spanning 1922–1979.",
+      "source": {
+        "fileObject": {"@id": "yearly-file"}
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/year",
+          "name": "year",
+          "description": "Box office reporting year.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "year"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/rank",
+          "name": "rank",
+          "description": "Rank of the movie by total US box office gross within this year (1 = highest grossing).",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "rank"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/imdb",
+          "name": "imdb",
+          "description": "IMDB title identifier (e.g. 'tt0013750').",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "imdb"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/box_office",
+          "name": "box_office",
+          "description": "Total reported US box office gross in dollars for this movie in this year, summed across all Variety issues.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "box_office"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/title",
+          "name": "title",
+          "description": "Canonical movie title from IMDB.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/year_of_release",
+          "name": "year_of_release",
+          "description": "Year the movie was released, from IMDB metadata.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "year_of_release"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/runtime",
+          "name": "runtime",
+          "description": "Movie runtime in minutes, from IMDB metadata.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "runtime"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yearly/genres",
+          "name": "genres",
+          "description": "Comma-separated list of genres from IMDB metadata (e.g. 'Drama,Romance,Sport').",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {"@id": "yearly-file"},
+            "extract": {
+              "column": "genres"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
