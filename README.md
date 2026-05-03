@@ -3,7 +3,7 @@ Weekly box office earnings extracted from Variety magazine, 1922-1979
 
 ## Summary
 
-This repository provides data extracted from Variety magazine, capturing weekly box office earnings within the US over the period 1922-1979. This research is decribed in the following article:
+This repository provides data extracted from Variety magazine, capturing weekly box office earnings within the US over the period 1922-1979. This research is described in the following article:
 
 David Bamman, Kent Chang, Allison Cooper, Juishan Hsu, Reina Kushihashi, Madison Mar, Arnav Podichetty, Rachael Samberg, Ipek Nil Sancak and Yuhan Shao (2026), "Evaluating Multimodal Narrative Understanding of Popular Hollywood Films", ArXiV (forthcoming).
 
