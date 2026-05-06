@@ -60,7 +60,7 @@
     "Document analysis",
     "Secondary Data Analysis"
   ],
-  "rai:dataCollectionMissingData": "Data only includes movies reported in Variety magazine (1922-1979), which focuses on under 100 major metropolitan cities. The compiled data only uses data from cities within the United States, and not box office numbers reported from outside the US.",
+  "rai:dataCollectionMissingData": "Data only includes movies reported in Variety magazine (1922-1979), which focuses on under 100 major metropolitan cities. The compiled data only uses information from cities within the United States, and not box office numbers reported from outside the US.",
   "rai:dataCollectionRawData": "Scanned page images of Variety magazine from 1922–1979 licensed to UC Berkeley for educational and research purposes; not redistributed due to copyright restrictions.",
   "rai:dataCollectionTimeframe": "Variety magazine (originally published between March 3, 1922 through December 26, 1979).",
   "rai:dataAnnotationProtocol": "We create a gold-standard dataset to evaluate tuple extraction by manually labeling 4,072 tuples in 21 issues of Variety spanning the years 1922-1979.  We use 7 of these issues for development and hold out 12 issues for evaluation.  Annotations were created by visually inspecting each page image in an issue and manually creating tuples of the form <page, city, theater, movie name, reported gross",
@@ -125,7 +125,7 @@
         "@id": "github-repository"
       },
       "contentUrl": "data/all_data.json.gz",
-      "encodingFormat": "application/gzip"
+      "encodingFormat": "application/json"
     },
     {
       "@type": "cr:FileObject",
@@ -491,7 +491,7 @@
           "@id": "yearly/runtime",
           "name": "runtime",
           "description": "Movie runtime in minutes, from IMDB metadata.",
-          "dataType": "sc:Integer",
+          "dataType": "sc:Text",
           "source": {
             "fileObject": {"@id": "yearly-file"},
             "extract": {
